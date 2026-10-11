@@ -1,0 +1,37 @@
+%% Шаблон DFD у нотації Mermaid. Замініть на елементи своєї системи.
+
+flowchart LR
+ dev([Клієнт-розробник]):::ext
+ admin([Адміністратор платформи]):::ext
+ mailsvc([Поштовий сервер]):::ext
+ subgraph TB1[Межа довіри: загальний периметр]
+ entry[Точка входу]
+ identity[Перевірка особи]
+ backup_worker[Виконавець резервування]
+ restore_handler[Обробник відновлення]
+ end
+ subgraph TB3[Межа довіри: адміністративна зона]
+ role_manager[Менеджер ролей]
+ end
+ subgraph TB2[Межа довіри: сховища даних]
+ account_db[(База облікових записів і ролей)]
+ archive_store[(Сховище архівів)]
+ event_log[(Журнал подій)]
+ end
+ dev -->|F1 HTTPS: запит на вхід чи операцію| entry
+ entry -->|F2 перевірка токена| identity
+ identity -->|F3 SQL: читання облікового запису й ролі| account_db
+ identity -->|F4 запис результату перевірки| event_log
+ entry -->|F5 команда збереження копії| backup_worker
+ entry -->|F6 команда відновлення копії| restore_handler
+ backup_worker -->|F7 запис зашифрованого архіву| archive_store
+ backup_worker -->|F8 SQL: оновлення метаданих копії| account_db
+ backup_worker -->|F9 SMTP: сповіщення про завершення| mailsvc
+ restore_handler -->|F10 читання архіву| archive_store
+ restore_handler -->|F11 SQL: перевірка метаданих перед відновленням| account_db
+ admin -->|F12 HTTPS: запит на зміну ролі| role_manager
+ role_manager -->|F13 SQL: оновлення ролі користувача| account_db
+ role_manager -->|F14 запис дії адміністратора| event_log
+ entry -->|F15 відповідь: дані або файл| dev
+ classDef ext fill:#eee,stroke:#333;
+
