@@ -60,3 +60,9 @@ for entry in monitor.audit.entries():
     result = "дозвіл" if entry["allowed"] else "відмова"
     print(f"  {time:<10}{entry['subject']:<8}{entry['action']:<8}"
           f"{entry['object']:<10}{result:<9}{entry['reason']}")
+
+raw = monitor.audit.dump()
+if raw is not None:
+    with open("audit_dump.txt", "w", encoding="utf-8") as file:
+        file.write(raw)
+    print("\nПовний журнал audit.dump() збережено у файл audit_dump.txt")

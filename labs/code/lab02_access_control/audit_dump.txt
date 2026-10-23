@@ -1,0 +1,8 @@
+{"ts": 1792745912.7518463, "subject": "olena", "object": "rep03", "action": "READ", "allowed": true, "reason": "дозволено: читання в межах відділу за рівнем допуску"}
+{"ts": 1792745912.752042, "subject": "olena", "object": "rep03", "action": "WRITE", "allowed": false, "reason": "відмова: немає дозволу"}
+{"ts": 1792745912.7521775, "subject": "taras", "object": "rep03", "action": "READ", "allowed": true, "reason": "дозволено: рецензент: читання всіх документів відділу"}
+{"ts": 1792745912.7523165, "subject": "petro", "object": "rep10", "action": "READ", "allowed": false, "reason": "відмова: немає дозволу"}
+{"ts": 1792745912.7524166, "subject": "mykola", "object": "rep10", "action": "READ", "allowed": false, "reason": "відмова: несумісні ролі editor і reviewer"}
+{"ts": 1792745912.7531724, "subject": "oksana", "object": "rep18", "action": "DELETE", "allowed": true, "reason": "дозволено: читання в межах відділу за рівнем допуску, адміністратор: повні права на документи ІТ"}
+{"ts": 1792745912.7535279, "subject": "iryna", "object": "rep10", "action": "WRITE", "allowed": true, "reason": "дозволено: читання в межах відділу за рівнем допуску, редактор: зміна документів відділу рівня 1–2"}
+{"ts": 1792745912.753655, "subject": "andriy", "object": "rep17", "action": "DELETE", "allowed": false, "reason": "відмова: немає дозволу"}
